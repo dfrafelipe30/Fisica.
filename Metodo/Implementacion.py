@@ -1,13 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def funtionEuler(h,N,funcion,resultados):
-    print funcion[0]
-    for i in range(0,N):
+def funtionEuler(h,funcion,resultados):
+    for i in range(len(resultados)):
         answers = funcion[i] + resultados[i] * h
         funcion.append(answers)
         #x[i] = x[i - 1] + h
-    return  y 
+    return  funcion 
 
 #m = float(input("El peso del cuerpo: "))
 vI= float(input("La velocidad inicial: "))
@@ -24,18 +23,18 @@ x.append(vxo)
 y.append(vyo) 
 
 
-xx = []
-xy =[]
+xx = [0]
+xy =[0]
 
-g = [-9.8 for i in np.arange(1,N)]
-print g
-c = [0 for i in np.arange(1,N)]
+g = [-9.8 for i in range(N)]
 
-vx = funtionEuler(h, N, x , g)
-vy = funtionEuler(h, N,y, c)
+c = [0 for i in range(N)]
 
-xx = funtionEuler(h, N, xx, vx)
-xy = funtionEuler(h, N, xy, vy)
+vx = funtionEuler(h, x ,c)
+vy = funtionEuler(h,y, g)
 
-plt.scatter(xx,xy) 
+xx = funtionEuler(h, xx, vx)
+xy = funtionEuler(h, xy, vy)
+
+plt.plot(xx,xy) 
 plt.show()
